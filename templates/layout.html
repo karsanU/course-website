@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Flask Code-->
+    {% if title %}
+    <title> CSCB20 - {{ title }} </title>
+    {% else %}
+    <title>CSCB20</title>
+    {% endif %}
+
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='nav.css') }}">
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='container.css') }}">
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='footer.css') }}">
+
+    <script src='main.js'></script>
+
+</head>
+
+<body>
+    <!-- NAV -->
+    
+    <!-- CONTENT -->
+    <div class="container">
+        <div class="header">
+            <div class="nav">
+                <a href="index.html">Home</a>
+                <a href="news.html"> News </a>
+                <a href="lectures.html">Lectures</a>
+                <a href="assignments.html">Assignments&nbsp;</a>
+                <a href="labs.html">Labs</a>
+                <a href="https://piazza.com/mail.utoronto.ca/winter2017/csb20/home">Piazza</a>
+                <a href="https://markus-old.utsc.utoronto.ca/cscb20w19">MarkUs</a>
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfVx2TGzeBfwGCbDxO-3J21F73uBlIlM-dcIW__ZesKLMYBnQ/viewform">Feedback</a>
+                <a href="contacts.html">Contact</a>
+            </div>
+        </div>
+        {% block content %} {% endblock %}
+    </div>
+    <!-- FOOTER -->
+    <div class="footer">
+        <div id="createdBy">
+            <p> Created By:<p>
+                    <p>Hamish Rajiv</p>
+                    <p>Karsan Uthayakumar</p>
+        </div>
+        <div id = "facultyLink">
+            <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science
+                UTSC</a> </div>
+        <div id ="uoftName">
+            <h2>University of Toronto<h2>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

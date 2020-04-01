@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- content -->
+
+<div id="pageHeader">
+    <h1> Assignments</h1>
+</div>
+<hr>
+<div class="content">
+    <div>
+        <p>Here are the assignment and exercise topics, weights, and due dates. I will be posting the exercise
+            and
+            assignment handouts here. All exercises and assignments will be submitted on MarkUs.
+        </p>
+        <p>
+            Refer to syllabus for late penalties.
+        </p>
+
+
+        <p>
+            Any questions regarding the assignments feel free to use any method from <a herf="contacts.html">
+                Contacts</a>, or <a herf="https://piazza.com/mail.utoronto.ca/winter2017/csb20/home"></a>Piazaa
+            to
+            ask questions.
+        </p>
+    </div>
+
+
+    <table id="assignTable">
+        <tbody>
+            <tr>
+                <td>Assignment #</td>
+                <td>File</td>
+                <td>Topic(s)</td>
+                <td>Weight</td>
+                <td>Due Date</td>
+                <td>Solution</td>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td><a href="files/blank.pdf">Handout</a></td>
+                <td>Relational Algebra and MySQL </td>
+                <td>15%</td>
+                <td>Part 1. Wednesday Feb. 1, 11.59pm, Submit to <a
+                        href="https://markus.utsc.utoronto.ca/cscb20w17/?locale=en">MarkUs</a><br>
+                    <b>UPDATED:</b> Part 2 and 3. For 5% bonus Saturday Feb. 11, 11.59pm or
+                    Friday
+                    Feb. 17, 11.59 Submit to <a href="https://markus.utsc.utoronto.ca/cscb20w17/?locale=en">MarkUs</a>
+                    You can download
+                    a
+                    dumpfile for IMDB_SMALL
+                    <a href="files/blank.pdf">here</a>.<br> To use it type
+                    <code>mysql -u utorid -p &lt; IMDB_SMALL.sql</code>
+                </td>
+                <td><a href="files/blank.pdf">Solution Part 1</a></td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td><a href="files/blank.pdf">Handout</a>
+                    <a href="files/blank.pdf">a2.zip</a></td>
+                <td>HTML, CSS, PHP</td>
+                <td>15%</td>
+                <td>
+                    Part 1: Worth 50% Friday March. 10, 11.59pm, Submit to <a
+                        href="https://markus.utsc.utoronto.ca/cscb20w17/?locale=en">MarkUs</a><br>
+                    Part 2: Worth 50% Friday March. 19, 11.59pm, Submit to <a
+                        href="https://markus.utsc.utoronto.ca/cscb20w17/?locale=en">MarkUs</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>
+                    <a href="files/blank.pdf">Marking
+                        Scheme for A3 </a> <br><a href="files/blank.pdf">Handout</a>
+                </td>
+                <td>Web Application and Database</td>
+                <td>15%</td>
+                <td>Friday March 31,
+                    11.59pm</td>
+                <td></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

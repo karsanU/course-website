@@ -1,0 +1,68 @@
+.footer {
+
+ 
+  background: #333;
+  margin: 0px;
+  opacity: 0.9;
+  display: flex;
+  flex-flow: row wrap;
+  height: 50px;
+  padding: 10px;
+  padding-top: 20px;
+  margin-top: -80px;
+  clear:both;
+}
+
+.footer div {
+  margin: 0px;
+  padding: 0px;
+  width: 33%;
+}
+
+#middleDiv h2 {
+  align-self: center;
+  margin: 0px;
+  padding: 0px;}
+
+
+.footer h3 {
+  margin: 0px;
+  padding: 0px;
+  float: top;
+  color: #f2f2f2;
+  text-align: left;
+}
+
+.footer h2 {
+  margin: 0px;
+  padding: 0px;
+  color: #f2f2f2;
+  text-align: right;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.footer p {
+  margin: 0px;
+  padding: 0px;
+   color: #f2f2f2;
+   
+}
+
+.footer a {
+   color: #f2f2f2;
+   font-size: 20px;
+  text-decoration: underline;
+   text-align:center;
+   display:block;
+}
+
+
+.footer a:hover {
+  text-decoration: none;
+}
+
+#uoftName {
+    text-align:right;
+    display:block;
+}
