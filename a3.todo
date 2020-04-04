@@ -1,0 +1,25 @@
+Frontend:
+    - allusers:
+        - Login page
+        - Create new account page
+        - logout link
+        - calender 
+        - should we change the tables?
+    
+    - Students only
+        - Give feedback page
+        - See grades page
+    
+    - Instructors only
+        - Recived feed back page
+        - See all of thier students page
+        - View the marks of individual students 
+        - page for new remark reuests 
+
+Backend:
+    - figureout how to login to each page for the specific user
+    - display data from database code 
+
+Database updates:
+    - remark request along with a message @done
+    - feedback has 4 questions @done

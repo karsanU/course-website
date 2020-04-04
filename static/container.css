@@ -2,6 +2,8 @@ html,body{
     height: 100%;
     margin: 0px;
     padding: 0px;
+    font-family:  Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
   }
 
 body {
@@ -9,13 +11,18 @@ body {
     padding: 0px;
     background-color: #ffffff;
     color: #000000;
-    font-family:  Arial, Helvetica, sans-serif;
+    
 
   }
+
+.pageHeader h1 {
+  margin: 30px 0;
+}
 
 hr {
   width: 95%;
 }
+
 
 .container {
    display: flex; /* or inline-flex */
@@ -24,10 +31,16 @@ hr {
   align-items: center;
   min-height: 100%;
   padding-bottom: 80px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
   
   }
 .content {
   width: 80%;
+  font-size: 18px;
+  line-height: 1.5 ;
+
  
 }
 

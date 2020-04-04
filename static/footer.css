@@ -2,7 +2,7 @@
 .footer {
   background: #333;
   margin: 0px;
-  opacity: 0.9;
+  opacity: 1;
   display: flex;
   flex-flow: row wrap;
   height: 50px;

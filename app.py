@@ -2,7 +2,7 @@ from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session, abort
 import os
 from sqlalchemy.orm import sessionmaker
-from tabledef import *
+from databaseSchema import *
 engine = create_engine('sqlite:///assignment3.db', echo=True)
 
 # Initialize app
@@ -14,7 +14,7 @@ def prompt():
     if not session.get("logged_in"):
         return render_template("login.html")
     else: 
-        return index()
+        return home()
 
 
 @app.route('/login', methods=['POST'])
@@ -31,27 +31,27 @@ def do_admin_login():
         flash('wrong password!')
     return prompt()
 
-@app.route('/index.html')
-def index():
+@app.route('/home')
+def home():
         return  render_template("index.html")
 
-@app.route('/news.html')
+@app.route('/news')
 def news():
     return  render_template("news.html")
 
-@app.route('/lectures.html')
+@app.route('/lectures')
 def lectures():
     return  render_template("lectures.html")
 
-@app.route('/labs.html')
+@app.route('/labs')
 def labs():
     return  render_template("labs.html")
 
-@app.route('/contacts.html')
+@app.route('/contacts')
 def contact():
     return  render_template("contacts.html")
 
-@app.route('/assignments.html')
+@app.route('/assignments')
 def assignments():
     return  render_template("assignments.html")
 
