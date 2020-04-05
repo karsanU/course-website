@@ -1,6 +1,6 @@
 Frontend:
     - allusers:
-        - Login page
+        - Login page@done
         - Create new account page
         - logout link
         - calender 
@@ -9,6 +9,10 @@ Frontend:
     - Students only
         - Give feedback page
         - See grades page
+    
+    - Javascript part
+        - used to listen to button clicks
+        - when taking input from user to validate that the info is what we require. For example inserting text where number should be.
     
     - Instructors only
         - Recived feed back page

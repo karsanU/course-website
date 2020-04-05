@@ -8,7 +8,7 @@ engine = create_engine('sqlite:///assignment3.db', echo=True)
 # Initialize app
 app = Flask(__name__)
 
-
+@app.route('/login')
 @app.route('/')
 def prompt():
     if not session.get("logged_in"):
@@ -31,9 +31,15 @@ def do_admin_login():
         flash('wrong password!')
     return prompt()
 
+@app.route("/signup")
+def signup():
+    return  render_template("signup.html")
+
+
+
 @app.route('/home')
 def home():
-        return  render_template("index.html")
+    return  render_template("index.html")
 
 @app.route('/news')
 def news():
