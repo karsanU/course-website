@@ -13,16 +13,26 @@
 <body>
   <div class="loginBox">
     <h1> Log In</h1>
+
     <form action="/login" method="POST">
       <input type="username" name="username" placeholder="Username">
       <input type="password" name="password" placeholder="Password">
-      <input id = "submitButton" type="submit" value="Login">
+      <input id="submitButton" type="submit" value="Login">
     </form>
-    
+
     <form action="/signUpPage">
-    <button > 
-      Sign Up
-    </button></form>
+      <button>
+        Sign Up
+      </button></form>
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p style="color:red; font-size: 15px; text-align: center; padding: 0; margin: 5px 0px 0px 0px;"> {{ message }} </p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
   </div>
 </body>
 

@@ -43,7 +43,7 @@ def login():
     if result:
         session['logged_in'] = True
     else:
-        flash('wrong password!')
+        flash('wrong username or passwrod')
     return prompt()
 
 
