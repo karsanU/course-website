@@ -4,7 +4,13 @@
 
 <div class="pageHeader">
     <h1> Welcome to CSCB20</h1>
-
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:red;"> {{ message }} </p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
 </div>
 <hr>
 <div class="content">

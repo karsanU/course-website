@@ -15,43 +15,45 @@
     <div class="signUpBox">
         <h1 id="h11"> Sign Up</h1>
 
-        <form name= "singUpForm", action="/signUp" method="POST">
+        <form name="singUpForm" action="/signUp" onsubmit="return validateForm()" method="POST">
 
 
-            <label for="selectAccType">Choose a account type:</label>
-            <select id="selectAccType" , onchange="changerUserDisplay()">
+            <label>Choose a account type:</label>
+            <select name = selectAccType id="selectAccType" onchange="changerUserDisplay()">
                 <option value="student">Student</option>
                 <option value="instructor">Instructor</option>
             </select>
-            <p id="demo"></p>
-
             <!-- get all the users-->
-            <label id="selectInstructorsLabel" , for="selectInstructors">Choose your instructors:</label>
-            <select id="selectInstructors" , name="selectInstructors" , multiple>
+            <label id="selectInstructorsLabel" for="selectInstructors">Choose your instructors:</label>
+            <select id="selectInstructors" name="selectInstructors" multiple>
                 {% for i in allInstructors %}
                 <option value="{{i.username}}"> {{i.username}}: {{i.firstName}} {{i.lastName}} </option>
                 {% endfor %}
             </select>
 
-            <label id="selectStudentsLabel" , for="selectAccType">Choose your students:</label>
-            <select id="selectStudents" , name="s" , multiple>
+            <label id="selectStudentsLabel" for="selectStudents">Choose your students:</label>
+            <select id="selectStudents" name="selectStudents" multiple>
                 {% for s in allStudents %}
                 <option value="{{s.username}}"> {{s.username}}: {{s.firstName}} {{s.lastName}}</option>
                 {% endfor %}
             </select>
             <label>Hold down the Ctrl (windows) or Command (Mac) button to select multiple options. </label>
-
-
-
+            
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p id="usernameExists"> {{ message }} </p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <input type="username" name="username" placeholder="Username">
             <input type="firstName" name="firstName" placeholder="First Name">
             <input type="lastName" name="lastName" placeholder="Last Name">
-            <input type="password" name="password" placeholder="Password">
-            <input type="password2" name="password" placeholder="Password">
-            <input id="submitButton" type="submit" value="Sign Up", onSubmit="return checkForm()">
+            <input type="password" name="password1" placeholder="Password">
+            <input type="password" name="password2" placeholder="Password">
+            <input id="submitButton" type="submit" value="Sign Up">
 
         </form>
-
         <form action="/loginPage">
             <button>
                 Log In

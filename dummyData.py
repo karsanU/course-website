@@ -35,18 +35,21 @@ session.add(stevenTeach)
 session.commit()
 
 # add student 
-karsanStudent = Student(userId=student1User.id, username=student1User.username, instructorId = bobTeach.id, firstName='Karsan', lastName='Uthayakumar')
+karsanStudent = Student(userId=student1User.id, username=student1User.username, firstName='Karsan', lastName='Uthayakumar')
+karsanStudent.instructor.append(bobTeach)
+karsanStudent.instructor.append(stevenTeach)
 session.add(karsanStudent)
 
-hamishStudent= Student(userId=student2User.id, username=student2User.username, instructorId = stevenTeach.id, firstName='Hamsih', lastName='Rajiv')
+hamishStudent= Student(userId=student2User.id, username=student2User.username, firstName='Hamsih', lastName='Rajiv')
+hamishStudent.instructor.append(bobTeach)
 session.add(hamishStudent)
 session.commit()
 
 # add grades
-karsanGrade = Grades(studentId = karsanStudent.id, a1=99, a2 = 100, a3=99, midterm=99, final=100, remark=True)
+karsanGrade = Grades(studentId = karsanStudent.id, a1=99, a2 = 100, a3=99, midterm=99, final=100, labs = 99)
 session.add(karsanGrade)   
 
-hamsihGrade = Grades(studentId = hamishStudent.id, a1=99, a2 = 100, a3=99, midterm=99, final=100, remark=False)
+hamsihGrade = Grades(studentId = hamishStudent.id, a1=99, a2 = 100, a3=99, midterm=99, final=100, labs =99)
 session.add(hamsihGrade)
 session.commit()
 

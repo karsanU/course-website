@@ -15,9 +15,13 @@ class User(Base):
     password = Column(String)
     isInstructor = (Boolean) 
     instructor = relationship("Instructor", uselist=False, back_populates="user")
-
-    #student = relationship("Student", uselist=False, back_populates="user")
+    student = relationship("Student", uselist=False, back_populates="user")
  
+
+association_table = Table('association', Base.metadata,
+    Column('instructorId', Integer, ForeignKey('instructor.id')),
+    Column('studentId', Integer, ForeignKey('student.id'))
+) 
 
 class Instructor(Base):
     __tablename__ = "instructor"
@@ -27,7 +31,10 @@ class Instructor(Base):
     firstName = Column(String)
     lastName = Column(String)
     user = relationship("User", back_populates="instructor")
-    students = relationship("Student")
+    student = relationship(
+        "Student",
+        secondary=association_table,
+        back_populates="instructor")
     feedbacks = relationship("Feedback")
 
 
@@ -37,10 +44,13 @@ class Student(Base):
     id = Column(Integer, primary_key=True)
     userId = Column(Integer,  ForeignKey('user.id'))
     username = Column(String, unique=True)
-    instructorId = Column(String, ForeignKey('instructor.userId'), unique=True)
     firstName = Column(String)
     lastName = Column(String)
-    #user = relationship("User", back_populates="student")
+    instructor = relationship(
+        "Instructor",
+        secondary=association_table,
+        back_populates="student")
+    user = relationship("User", back_populates="student")
     grades = relationship("Grades", uselist=False, back_populates="student")
 
 
@@ -49,12 +59,23 @@ class Grades(Base):
     id = Column(Integer, primary_key=True)
     studentId = Column(Integer,  ForeignKey('student.id'))
     a1 = Column(Integer)
+    a1remark = Column(Boolean, default = False)
+    a1remarkMessage = Column(String, default = None)
     a2 = Column(Integer)
+    a2remark = Column(Boolean, default = False)
+    a2remarkMessage = Column(String, default = None)
     a3 = Column(Integer)
+    a3remark = Column(Boolean, default = False)
+    a3remarkMessage = Column(String, default = None)
+    labs = Column(Integer)
+    labsRemark = Column(Boolean, default = False)
+    labsRemarkMessage = Column(String, default = None)
     midterm = Column(Integer)
-    final = Column(Integer)
-    remark = Column(Boolean)
-    remarkMessage = Column(String)
+    midtermRemark = Column(Boolean, default = False)
+    midtermRemarkMessage = Column(String, default = None)
+    final = Column(Integer, default = None )
+    finalRemark = Column(Boolean, default = False)
+    finalRemarkMessage = Column(String, default = None) 
     student = relationship("Student", back_populates="grades")
 
 class Feedback(Base):
