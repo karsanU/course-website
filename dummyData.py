@@ -27,18 +27,18 @@ session.commit()
 
 
 # add instructor 
-bobTeach = Instructor(userId=instructor1.id, username=instructor1.username,  firstname='Bob', lastname='Lucio')
+bobTeach = Instructor(userId=instructor1.id, username=instructor1.username,  firstName='Bob', lastName='Lucio')
 session.add(bobTeach)
 
-stevenTeach = Instructor(userId=instructor2.id, username=instructor2.username, firstname='Steven', lastname='Xaio')
+stevenTeach = Instructor(userId=instructor2.id, username=instructor2.username, firstName='Steven', lastName='Xaio')
 session.add(stevenTeach)
 session.commit()
 
 # add student 
-karsanStudent = Student(userId=student1User.id, username=student1User.username, instructorId = bobTeach.id, firstname='Karsan', lastname='Uthayakumar')
+karsanStudent = Student(userId=student1User.id, username=student1User.username, instructorId = bobTeach.id, firstName='Karsan', lastName='Uthayakumar')
 session.add(karsanStudent)
 
-hamishStudent= Student(userId=student2User.id, username=student2User.username, instructorId = stevenTeach.id, firstname='Hamsih', lastname='Rajiv')
+hamishStudent= Student(userId=student2User.id, username=student2User.username, instructorId = stevenTeach.id, firstName='Hamsih', lastName='Rajiv')
 session.add(hamishStudent)
 session.commit()
 

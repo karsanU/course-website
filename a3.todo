@@ -1,6 +1,8 @@
 Frontend:
     - allusers:
         - Login page@done
+        - signup page
+            - 
         - Create new account page
         - logout link
         - calender 
