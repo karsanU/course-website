@@ -12,16 +12,16 @@ session = Session()
 
 
 # add user
-instructor1 = User(username="instructor1",password="instructor1",isInstructor=True)
+instructor1 = User(username="instructor1",password="instructor1",isInstructor=1)
 session.add(instructor1)
 
-instructor2 = User(username="instructor2",password="instructor2",isInstructor=True)
+instructor2 = User(username="instructor2",password="instructor2",isInstructor=1)
 session.add(instructor2)
 
-student1User = User(username="student1",password="student1",isInstructor=False)
+student1User = User(username="student1",password="student1",isInstructor=0)
 session.add(student1User)
 
-student2User = User(username="student2",password="student2",isInstructor=False)
+student2User = User(username="student2",password="student2",isInstructor=0)
 session.add(student2User)
 session.commit()
 

@@ -10,7 +10,7 @@ from databaseSchema import *
 app = Flask(__name__)
 engine = create_engine('sqlite:///assignment3.db', echo=True)
 s = scoped_session(sessionmaker(bind=engine))
-# store all usernames globally for future purpose
+# current user;
 
 
 @app.teardown_request
@@ -39,11 +39,17 @@ def login():
     query = s.query(User).filter(User.username.in_(
         [POST_USERNAME]), User.password.in_([POST_PASSWORD]))
     result = query.first()
-
+    # set current global user
     if result:
         session['logged_in'] = True
+        session['user'] = POST_USERNAME
+        if ((s.query(User).filter_by(username=POST_USERNAME).first()).isInstructor) == 0:
+            session['accountType'] = "student"
+        else:
+            session['accountType'] = "instructor"
+
     else:
-        flash('wrong username or passwrod')
+        flash('wrong username or password')
     return prompt()
 
 
@@ -51,7 +57,6 @@ def login():
 def signUpPage():
     allInstructors = s.query(Instructor)
     allStudents = s.query(Student)
-
     return render_template("signUp.html", allStudents=allStudents, allInstructors=allInstructors)
 
 
@@ -80,9 +85,12 @@ def signUp():
         # add the student and use associated tables to database
         ####
         newUser = User(username=username, password=password,
-                       isInstructor=False)
+                       isInstructor=0)
         s.add(newUser)
         s.commit()
+        session['logged_in'] = True
+        session['user'] = newUser.username
+        session['accountType'] = "student"
         ####
         newStudent = Student(userId=newUser.id, username=username,
                              firstName=firstName, lastName=lastName)
@@ -106,9 +114,13 @@ def signUp():
     else:
         # add the user and use associated tables to database
         ####
-        newUser = User(username=username, password=password, isInstructor=True)
+        newUser = User(username=username, password=password, isInstructor=1)
         s.add(newUser)
         s.commit()
+        session['logged_in'] = True
+        session['user'] = newUser.username
+        session['accountType'] = "instructor"
+
         ####
         newInstructor = Instructor(
             userId=newUser.id, username=username, firstName=firstName, lastName=lastName)
@@ -126,42 +138,90 @@ def signUp():
     return home()
 
 
+@app.route('/viewGrades')
+def viewGrades():
+    if session.get("logged_in") == False:
+        return logout()
+    return render_template("gradesStudent.html", user=s.query(User).filter_by(username=session.get("user")).first(), accType=session.get("accountType"))
+
+
+@app.route('/processRemarkRequest', methods=['POST'])
+def processRemarkRequest():
+    student = s.query(Student).filter_by(username=session.get("user")).first()
+    remarkMessage = str(request.form['remarkMessage'])
+    if 'a1' in request.form:
+        student.grades.a1remark =1
+        student.grades.a1remarkMessage = remarkMessage
+    elif 'a2' in request.form:
+        student.grades.a2remark =1
+        student.grades.a2remarkMessage = remarkMessage
+    elif 'a3' in request.form:
+        student.grades.a3remark =1
+        student.grades.a3remarkMessage = remarkMessage
+    elif 'labs' in request.form:
+        student.grades.labsRemark =1
+        student.grades.labsRemarkMessage = remarkMessage
+    elif 'midterm' in request.form:
+        student.grades.midtermRemark =1
+        student.grades.midtermRemarkMessage = remarkMessage
+    elif 'final' in request.form: 
+        student.grades.finalRemark =1
+        student.grades.midtermRemarkMessage = remarkMessage
+    s.commit()
+    return render_template("gradesStudent.html", user=s.query(User).filter_by(username=session.get("user")).first(), accType=session.get("accountType"))
+
+
 @app.route('/home')
 def home():
-    return render_template("index.html")
+    if session.get("logged_in") == False:
+        return logout()
+    acctype = "instructor"
+    return render_template("index.html", accType=session.get("accountType"))
 
 
 @app.route('/news')
 def news():
-    return render_template("news.html")
+    if session.get("logged_in") == False:
+        return logout()
+    return render_template("news.html", accType=session.get("accountType"))
 
 
 @app.route('/lectures')
 def lectures():
-    return render_template("lectures.html")
+    if session.get("logged_in") == False:
+        return logout()
+    return render_template("lectures.html", accType=session.get("accountType"))
 
 
 @app.route('/labs')
 def labs():
-    return render_template("labs.html")
+    if session.get("logged_in") == False:
+        return logout()
+    return render_template("labs.html", accType=session.get("accountType"))
 
 
 @app.route('/contacts')
 def contact():
-    return render_template("contacts.html")
+    if session.get("logged_in") == False:
+        return logout()
+    return render_template("contacts.html", accType=session.get("accountType"))
 
 
 @app.route('/assignments')
 def assignments():
-    return render_template("assignments.html")
+    if session.get("logged_in") == False:
+        return logout()
+    return render_template("assignments.html", accType=session.get("accountType"))
 
 
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
+    session['user'] = None
+    session['accountType'] = None
     return prompt()
 
 
 if __name__ == '__main__':
-    app.secret_key = 'super secret key'
+    app.secret_key = 'super456secret&*)(key'
     app.run(debug=True)

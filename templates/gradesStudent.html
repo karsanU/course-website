@@ -4,77 +4,159 @@
 
 <div class="pageHeader">
     <h1> Grades </h1>
-     
+
 </div>
 <hr>
 <div class="content">
-    <table id="gradesTable">
+    <table class="gradesTable">
         <tbody>
-            
+
 
             <tr>
-                <td>2</td>
-                <td> <a href="files/blank.pdf">Python, Command line</a></td>
-                <td>None</td>
-            </tr>
-
-            <tr>
-                <td>3</td>
-                <td><a href="files/blank.pdf">Handout</a></td>
-            </tr>
-
-            <tr>
-                <td>4</td>
-                <td><a href="files/blank.pdf">Handout</a> <a href="files/blank.pdf">university.sql</a></td>
-                <td><a href="files/blank.pdf">query_solns</a></td>
-            </tr>
-
-            <tr>
-                <td>5</td>
-                <td><a href="files/blank.pdf">Handout</a>
-                </td>
-                <td><a href="files/blank.pdf">Solns</a></td>
-            </tr>
-
-            <tr>
-                <td>6</td>
-                <td> <a href="files/blank.pdf">Handout</a>
-                </td>
-                <td><a href="files/blank.pdf">Solns</a></td>
-            </tr>
-
-            <tr>
-                <td>7</td>
-                <td><a href="files/blank.pdf">Handout</a>
-                </td>
-                <td></td>
-
-            </tr>
-            <tr>
-                <td>8</td>
+                <td>Course Mark</td>
                 <td>
-                    <a href="files/blank.pdf">Handout</a> <br>
+                    Grade
                 </td>
-                <td></td>
+                <td> Remark request</td>
+            </tr>
+
+            <tr>
+                <td>Assignment 1</td>
+                <td>
+                    {% if  user.student.grades.a1 == None %}
+                    -
+                    {% else %}
+                    {{user.student.grades.a1}}
+
+                    {% endif %}
+                </td>
+                <td>
+                    {% if  user.student.grades.a1 != None and user.student.grades.a1remark == False %}
+                    <form class="remarkRequestForm" action="/processRemarkRequest" method="POST">
+                        <input type="text" name="remarkMessage" placeholder="message">
+                        <input id="submitButton" name="a1" type="submit" value="Request remark">
+                    </form>
+                    {% elif user.student.grades.a1 == None %}
+                    - 
+                    {% elif user.student.grades.a1remark == True %}
+                    Remark requested
+                    {% endif %}
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Assignment 2</td>
+                <td>
+                    {% if  user.student.grades.a2 == None %}
+                    -
+                    {% else %}
+                    {{user.student.grades.a2}}
+                    {% endif %}
+                </td>
+
+                <td> {% if  user.student.grades.a2 != None and user.student.grades.a2remark == False %}
+                    <form class="remarkRequestForm" action="/processRemarkRequest" method="POST">
+                        <input type="text" name="remarkMessage" placeholder="message">
+                        <input id="submitButton" name="a2" type="submit" value="Request remark">
+                    </form>
+                    {% elif user.student.grades.a2 == None %}
+                    - 
+                    {% elif user.student.grades.a2remark == True %}
+                    Remark requested
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td>Assignment 3</td>
+                <td>
+                    {% if  user.student.grades.a3 == None %}
+                    -
+                    {% else %}
+                    {{user.student.grades.a3}}
+                    {% endif %}
+                </td>
+                <td>{% if  user.student.grades.a3 != None and user.student.grades.a3remark == False %}
+                    <form class="remarkRequestForm" action="/processRemarkRequest" method="POST">
+                        <input type="text" name="remarkMessage" placeholder="message">
+                        <input id="submitButton" name="a3" type="submit" value="Request remark">
+                    </form>
+                    {% elif user.student.grades.a3 == None %}
+                    - 
+                    {% elif user.student.grades.a3remark == True %}
+                    Remark requested
+                    {% endif %}
+            </tr>
+
+            <tr>
+                <td>Labs</td>
+                <td>
+                    {% if  user.student.grades.labs == None %}
+                    -
+                    {% else %}
+                    {{user.student.grades.labs}}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if  user.student.grades.labs != None and user.student.grades.labsRemark == False %}
+                    <form class="remarkRequestForm" action="/processRemarkRequest" method="POST">
+                        <input type="text" name="remarkMessage" placeholder="message">
+                        <input id="submitButton" name="labs" type="submit" value="Request remark">
+                    </form>
+                    {% elif user.student.grades.labs == None %}
+                    - 
+                    {% elif user.student.grades.labsRemark == True %}
+                    Remark requested
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td>Midterm</td>
+                <td>
+                    {% if  user.student.grades.midterm == None %}
+                    -
+                    {% else %}
+                    {{user.student.grades.midterm}}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if  user.student.grades.midterm != None and user.student.grades.midtermRemark == False %}
+                    <form class="remarkRequestForm" action="/processRemarkRequest" method="POST">
+                        <input type="text" name="remarkMessage" placeholder="message">
+                        <input id="submitButton" name="midterm" type="submit" value="Request remark">
+                    </form>
+                    {% elif user.student.grades.midterm == None %}
+                    - 
+                    {% elif user.student.grades.midtermRemark == True %}
+                    Remark requested
+                    {% endif %}
+                </td>
 
             </tr>
             <tr>
-                <td>9</td>
-                <td><a href="files/blank.pdf">Handout</a>
+                <td>Final </td>
+                <td>
+                    {% if  user.student.grades.final == None %}
+                    -
+                    {% else %}
+                    {{user.student.grades.final}}
+                    {% endif %}
                 </td>
-                <td></td>
-
-            </tr>
-            <tr>
-                <td>10</td>
-                <td><a href="https://www.w3schools.com/jquery/jquery_syntax.asp">W3 tutorial</a> Work through
-                    the tutorial for jQuery
-                    up until jQuery Remove.
+                <td>
+                    {% if  user.student.grades.final != None and user.student.grades.finalRemark == False %}
+                    <form class="remarkRequestForm" action="/processRemarkRequest" method="POST">
+                        <input type="text" name="remarkMessage" placeholder="message">
+                        <input id="submitButton" name="final" type="submit" value="Request remark">
+                    </form>
+                    {% elif user.student.grades.final == None %}
+                    - 
+                    {% elif user.student.grades.finalRemark == True %}
+                    Remark requested
+                    {% endif %}
                 </td>
-                <td></td>
             </tr>
-
-
 
         </tbody>
     </table>

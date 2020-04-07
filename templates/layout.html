@@ -24,7 +24,7 @@
 
 <body>
     <!-- NAV -->
-    
+
     <!-- CONTENT -->
     <div class="container">
         <div class="header">
@@ -36,10 +36,17 @@
                 <a href="labs">Labs</a>
                 <a href="https://piazza.com/mail.utoronto.ca/winter2017/csb20/home">Piazza</a>
                 <a href="https://markus-old.utsc.utoronto.ca/cscb20w19">MarkUs</a>
-                <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfVx2TGzeBfwGCbDxO-3J21F73uBlIlM-dcIW__ZesKLMYBnQ/viewform">Feedback</a>
                 <a href="contacts">Contact</a>
-                <a id = "logout" href="logout">Logout</a>
+
+                {% if  accType == "student" %}
+                <a href="viewGrades"> My grades</a>
+                <a href="giveFeedback"> Feedback </a>
+                {% else %}
+                <a href="viewGrades"> Student's grades</a>
+                <a href="recivedFeedback"> My feedback </a>    
+                {% endif %}
+
+                <a id="logout" href="logout">Logout</a>
             </div>
         </div>
         {% block content %} {% endblock %}
@@ -51,10 +58,10 @@
                     <p>Hamish Rajiv</p>
                     <p>Karsan Uthayakumar</p>
         </div>
-        <div id = "facultyLink">
+        <div id="facultyLink">
             <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science
                 UTSC</a> </div>
-        <div id ="uoftName">
+        <div id="uoftName">
             <h2>University of Toronto<h2>
         </div>
     </div>
