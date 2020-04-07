@@ -82,20 +82,28 @@ table tr{
 
 .gradesTable {
   min-width: 60%;
-  text-align: center;
 }
 
 .gradesTable tr {
   height: 80px;
   padding-bottom: 0px;
   margin-bottom: 0px;
+
 }
 
+.gradesTable td {
+  padding-left: 15px;
+
+}
+
+ul {
+  margin:15px;
+  padding:0px;
+}
 
 .gradesTable tr:first-child td {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
   background-color: #333;
   opacity: 0.7;
   color: white;
@@ -116,7 +124,80 @@ table tr{
 #submitButton {
   color:white;
   background-color:#333;
- 
+  margin-left: 5px;
+  
+}
+#submitButton {
+  width: 150px;
+}
+#submitButton:hover {
+  font-size: 15px;
+  
 }
 
 input:focus {outline:0;}
+
+#viewMyStudentsTable {
+  min-width: 60%;
+}
+
+#viewMyStudentsTable tr {
+  height:80px;
+}
+
+
+.regradeForm input{
+  height: 40px;
+  font-size: 18px;
+  color:black;
+  background-color:rgb(211, 211, 211);
+  display: inline;
+  border-radius: 0;
+  border-width: 0px;
+  padding-left: 10px;
+  
+}
+
+#markEnterBox {
+  width: 50px;
+}
+
+.regradeForm input{
+  height: 40px;
+  font-size: 18px;
+  color:black;
+  background-color:rgb(211, 211, 211);
+  display: inline;
+  border-radius: 0;
+  border-width: 0px;
+  padding-left: 10px;
+  
+}
+#feedbackForm {
+  display: block;
+}
+#feedbackForm input{
+  font-size: 20px;
+  color:white;
+  background-color:#333;
+  height: 50px;
+  border-radius: 10px;
+  border-width: 0px;
+  width: 200px;
+  margin-bottom: 5px;
+  padding-left: 15px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+#submitButtonFeedback:hover {
+  font-size: 19px;
+}
+
+textarea {
+  font-size: 16px;
+}
+select {
+   font-size: 18px;
+}

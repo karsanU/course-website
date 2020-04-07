@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- content -->
+<div id="pageHeader">
+    <h1> Give feedback </h1>
+</div>
+<hr>
+<div class="content">
+
+    <form id="feedbackForm" name="feedbackForm" action="/signUp" onsubmit="return validateFeedback()" method="POST">
+
+        <!-- get all the users-->
+        <label>Choose your the instructor:</label>
+        <br>
+        <select id="listInstructors" name="listInstructors">
+            {% for i in instructors %}
+            <option value="{{i.username}}"> {{i.username}}: {{i.firstName}} {{i.lastName}} </option>
+            {% endfor %}
+        </select>
+        <br>
+        <p></p>
+        <label>What do you like about the instructor teaching?</label>
+        <br>
+        <textarea name="q1" cols="40" rows="5"></textarea>
+        <br>
+        <label>What do you recommend the instructor to do to improve their teaching?</label>
+        <br>
+        <textarea name="q2" cols="40" rows="5"></textarea>
+        <br>
+        <label>What do you like about the labs?</label>
+        <br>
+        <textarea name="q3" cols="40" rows="5"></textarea>
+        <br>
+        <label>What do you recommend the lab instructors to do to improve their lab teaching?</label>
+        <br>
+        <textarea name="q4" cols="40" rows="5"></textarea>
+        <br>
+        <input id="submitButtonFeedback" type="submit" value="Send Feedback">
+
+    </form>
+</div>
+{% endblock %}

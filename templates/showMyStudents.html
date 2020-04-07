@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- content -->
+<div class="pageHeader">  
+    <h1> Student Management</h1>
+</div>
+<hr>
+<div class="content">
+    <table id="viewMyStudentsTable">
+    <tbody>
+        <tr>
+            <td> Username</td>
+            <td> Name</td>
+            <td> Access grades</td>
+        </tr>
+
+        
+           {% for s in myStudents %}
+           <tr>
+            <td> {{s.username}}</td>
+            <td> {{s.firstName}} {{s.lastName}}</td>
+             <td> <form class="remarkRequestForm" action="/redirect-editStudentGrade"  method="POST">
+                 <input   id = submitButton name={{s.username}} type="submit" value="View Grades">
+            </form></td>
+            {% endfor %}
+           </tr>
+          
+
+    </tbody>
+</table>
+
+</div>
+{% endblock %}
+
+

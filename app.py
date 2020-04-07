@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 import os
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import *
@@ -21,9 +21,9 @@ def remove_session(ex=None):
 @app.route('/')
 def prompt():
     if not session.get("logged_in"):
-        return render_template("login.html")
+        return redirect(url_for('loginPage'))
     else:
-        return home()
+        return redirect(url_for('home'))
 
 
 @app.route('/loginPage')
@@ -42,7 +42,7 @@ def login():
     # set current global user
     if result:
         session['logged_in'] = True
-        session['user'] = POST_USERNAME
+        session['userName'] = POST_USERNAME
         if ((s.query(User).filter_by(username=POST_USERNAME).first()).isInstructor) == 0:
             session['accountType'] = "student"
         else:
@@ -89,7 +89,7 @@ def signUp():
         s.add(newUser)
         s.commit()
         session['logged_in'] = True
-        session['user'] = newUser.username
+        session['userName'] = newUser.username
         session['accountType'] = "student"
         ####
         newStudent = Student(userId=newUser.id, username=username,
@@ -118,7 +118,7 @@ def signUp():
         s.add(newUser)
         s.commit()
         session['logged_in'] = True
-        session['user'] = newUser.username
+        session['userName'] = newUser.username
         session['accountType'] = "instructor"
 
         ####
@@ -135,19 +135,18 @@ def signUp():
         flash("New account created, welcome " +
               newInstructor.firstName + " " + newInstructor.lastName)
 
-    return home()
-
+    return redirect(url_for('home'))
 
 @app.route('/viewGrades')
 def viewGrades():
     if session.get("logged_in") == False:
         return logout()
-    return render_template("gradesStudent.html", user=s.query(User).filter_by(username=session.get("user")).first(), accType=session.get("accountType"))
+    return render_template("gradesStudent.html", user=s.query(User).filter_by(username=session.get("userName")).first(), accType=session.get("accountType"))
 
 
 @app.route('/processRemarkRequest', methods=['POST'])
 def processRemarkRequest():
-    student = s.query(Student).filter_by(username=session.get("user")).first()
+    student = s.query(Student).filter_by(username=session.get("userName")).first()
     remarkMessage = str(request.form['remarkMessage'])
     if 'a1' in request.form:
         student.grades.a1remark =1
@@ -168,14 +167,77 @@ def processRemarkRequest():
         student.grades.finalRemark =1
         student.grades.midtermRemarkMessage = remarkMessage
     s.commit()
-    return render_template("gradesStudent.html", user=s.query(User).filter_by(username=session.get("user")).first(), accType=session.get("accountType"))
+    return redirect(url_for('viewGrades'))
+
+@app.route('/showMyStudents')
+def showMyStudents():
+    myStudents = s.query(Instructor).filter_by(username=session.get("userName")).first().student
+    return render_template("showMyStudents.html", myStudents =myStudents, accType=session.get("accountType"))
+
+@app.route('/redirect-editStudentGrade',  methods=['POST'])
+def redirecteditStudentGrade():
+    studentUsername = request.form.keys()[0]
+    session['studentBeingViewed'] = studentUsername
+    return redirect(url_for('editStudentGrade'))
+
+
+@app.route('/editStudentGrade', )
+def editStudentGrade():
+    studentUsername = session.get("studentBeingViewed")
+    student=s.query(Student).filter_by(username=studentUsername).first()
+    return render_template("editStudentGrade.html", student =student, accType=session.get("accountType"))
+
+@app.route('/modifyGrade',  methods=['POST'])
+def modifyGrade():
+    studentUsername = session.get("studentBeingViewed")
+    student=s.query(Student).filter_by(username=studentUsername).first()
+    if 'a1' in request.form:
+        student.grades.a1 = int(request.form['newMark'])
+        student.grades.a1remark =0
+        student.grades.a1remarkMessage = None
+    elif 'a2' in request.form:
+        student.grades.a2 = int(request.form['newMark'])
+        student.grades.a2remark =0
+        student.grades.a2remarkMessage = None
+    elif 'a3' in request.form:
+        student.grades.a3 = int(request.form['newMark'])
+        student.grades.a3remark =0
+        student.grades.a3remarkMessage = None
+    elif 'labs' in request.form:
+        student.grades.labs = int(request.form['newMark'])
+        student.grades.labsRemark =0
+        student.grades.labsRemarkMessage = None
+    elif 'midterm' in request.form:
+        student.grades.midterm = int(request.form['newMark'])
+        student.grades.midtermRemark =0
+        student.grades.midtermRemarkMessage = None
+    elif 'final' in request.form: 
+        student.grades.final = int(request.form['newMark'])
+        student.grades.finalRemark =0
+        student.grades.midtermRemarkMessage = None
+    s.commit()
+    return render_template("editStudentGrade.html", student =student, accType=session.get("accountType"))
+
+
+@app.route('/giveFeedback')
+def giveFeedback():
+    if session.get("logged_in") == False:
+        return logout()
+        
+    instructors = s.query(Student).filter_by(username=session.get("userName")).first().instructor
+    return render_template("giveFeedback.html", accType=session.get("accountType"), instructors=instructors)
+
+@app.route('/giveFeedbackProcess')
+def giveFeedbackProcess():
+    if session.get("logged_in") == False:
+        return logout()
+    return redirect(url_for('giveFeedback'))
 
 
 @app.route('/home')
 def home():
     if session.get("logged_in") == False:
         return logout()
-    acctype = "instructor"
     return render_template("index.html", accType=session.get("accountType"))
 
 
@@ -217,9 +279,9 @@ def assignments():
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
-    session['user'] = None
+    session['userName'] = None
     session['accountType'] = None
-    return prompt()
+    return redirect(url_for('loginPage'))
 
 
 if __name__ == '__main__':

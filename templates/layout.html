@@ -17,8 +17,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='nav.css') }}">
     <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='container.css') }}">
     <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static', filename='footer.css') }}">
-
-    <script src='main.js'></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='content.js') }}"></script>
 
 </head>
 
@@ -39,11 +38,11 @@
                 <a href="contacts">Contact</a>
 
                 {% if  accType == "student" %}
-                <a href="viewGrades"> My grades</a>
+                <a href="viewGrades"> Grades</a>
                 <a href="giveFeedback"> Feedback </a>
                 {% else %}
-                <a href="viewGrades"> Student's grades</a>
-                <a href="recivedFeedback"> My feedback </a>    
+                <a href="showMyStudents"> ManageStudents</a>
+                <a href="recivedFeedback"> Feedback </a>    
                 {% endif %}
 
                 <a id="logout" href="logout">Logout</a>
