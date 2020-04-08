@@ -80,8 +80,8 @@ class Grades(Base):
 
 class Feedback(Base):
     __tablename__ = "feedback"
-    instructorId = Column(Integer,  ForeignKey('instructor.id'), primary_key=True)
-    studentId = Column(Integer,  ForeignKey('student.id'), primary_key=True)
+    id = Column(Integer, primary_key=True)
+    instructorId = Column(Integer,  ForeignKey('instructor.id'))
     q1 = Column(String)
     q2 = Column(String)
     q3 = Column(String)

@@ -1,10 +1,26 @@
-function validateRemark(){
+function validateRemark() {
 
     var newMark = document.forms["regradeForm"]["newMark"].value;
-    if((newMark < 101) && (newMark >= 0)){
+    if ((newMark < 101) && (newMark >= 0)) {
         return true;
     }
     alert("Mark must be between 0 and 100")
-    return false; 
+    return false;
 
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    var collapsible = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < collapsible.length; i++) {
+        collapsible[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+}, false);

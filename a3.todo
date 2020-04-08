@@ -1,30 +1,29 @@
 Frontend:
     - allusers:
         - Login page@done
-        - signup page
-            - 
-        - Create new account page
-        - logout link
+        - signup page@dones
+        - Create new account page@done
+        - logout link@done
         - calender 
         - should we change the tables?
     
     - Students only
-        - Give feedback page
-        - See grades page
+        - Give feedback page@done
+        - See grades page@done
     
     - Javascript part
-        - used to listen to button clicks
-        - when taking input from user to validate that the info is what we require. For example inserting text where number should be.
+        - used to listen to button clicks@done
+        - when taking input from user to validate that the info is what we require. For example inserting text where number should be.@done
     
     - Instructors only
-        - Recived feed back page
-        - See all of thier students page
-        - View the marks of individual students 
-        - page for new remark reuests 
+        - Recived feed back page@done
+        - See all of thier students page@done
+        - View the marks of individual students@done 
+        - page for new remark reuests @done
 
 Backend:
-    - figureout how to login to each page for the specific user
-    - display data from database code 
+    - figureout how to login to each page for the specific user@done
+    - display data from database code@done
 
 Database updates:
     - remark request along with a message @done

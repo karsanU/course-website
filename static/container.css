@@ -142,7 +142,7 @@ input:focus {outline:0;}
 }
 
 #viewMyStudentsTable tr {
-  height:80px;
+  height:70px;
 }
 
 
@@ -200,4 +200,38 @@ textarea {
 }
 select {
    font-size: 18px;
+}
+ 
+
+.feedbackMessage {
+  font-size: 15px;
+  padding: 0 18px;
+  overflow: hidden;
+  border-radius: 20px;
+  display: none;
+  border:10px;
+
+}
+
+.collapsible {
+  color: #333;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+   cursor: pointer;
+  padding: 18px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  width: 100%;
+  margin-bottom: 15px;
+
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+  color: white;
+}
+ .individualMessage b {
+  font-size: 15px;
 }

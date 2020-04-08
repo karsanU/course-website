@@ -54,10 +54,10 @@ session.add(hamsihGrade)
 session.commit()
 
 # add feedback 
-feedback1 = Feedback(instructorId=bobTeach.id, studentId=karsanStudent.id, q1="Please bring donuts for all students.", q2="",q3="", q4="")
+feedback1 = Feedback(instructorId=bobTeach.id,  q1="Please bring donuts for all students.", q2="",q3="", q4="")
 session.add(feedback1)
 
-feedback2 = Feedback(instructorId=stevenTeach.id, studentId=hamishStudent.id, q1="Please bring cookies for all students.", q2="",q3="", q4="")
+feedback2 = Feedback(instructorId=stevenTeach.id,  q1="Please bring cookies for all students.", q2="",q3="", q4="")
 session.add(feedback2)
 session.commit()
 

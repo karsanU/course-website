@@ -5,7 +5,7 @@ body {
 }
 .loginBox{
     width: 300px;
-    max-height: 310px;
+    max-height: 470px;
     display: inline-block;
 	background-color:white;
 	position: absolute;
@@ -74,8 +74,8 @@ button:focus {outline:0;}
 
 @media only screen and (max-width: 600px) {
     .loginBox{
-        width: 80%;
-        max-height: 300px;
+        max-width: 80%;
+        max-height: 500px;
         display: inline-block;
         background-color:white;
         position: absolute;
@@ -88,4 +88,9 @@ button:focus {outline:0;}
     
          
     }
+}
+
+img {
+    padding-top: 10px;
+    width: 100%;
 }

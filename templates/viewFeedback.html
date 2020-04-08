@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- content -->
+<div class="pageHeader">
+    <h1> Student Management</h1>
+</div>
+<hr>
+<div class="content">
+    <div id="viewFeedback">
+        {% for f in feedback %}
+        <button type="button" class="collapsible">Feedback {{feedback.index(f)+1}}</button>
+        <div class="feedbackMessage">
+            <ol class="individualMessage">
+                <li> <b>What do you like about the instructor teaching?</b>  </li>
+                - {{f.q1}}
+                <li><b>What do you recommend the instructor to do to improve their teaching?</b> </li>
+                - {{f.q2}}
+                <li><b>What do you like about the labs?</b> </li>
+                - {{f.q3}} 
+                <li><b>What do you recommend the lab instructors to do to improve their lab teaching?</b> </li>
+                - {{f.q4}}
+            </ol>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -165,7 +165,7 @@ def processRemarkRequest():
         student.grades.midtermRemarkMessage = remarkMessage
     elif 'final' in request.form: 
         student.grades.finalRemark =1
-        student.grades.midtermRemarkMessage = remarkMessage
+        student.grades.finalRemarkMessage = remarkMessage
     s.commit()
     return redirect(url_for('viewGrades'))
 
@@ -180,6 +180,16 @@ def redirecteditStudentGrade():
     session['studentBeingViewed'] = studentUsername
     return redirect(url_for('editStudentGrade'))
 
+@app.route('/remarkRequests', )
+def RemarkRequests():
+    remarkStudents=[]
+    myStudents = s.query(Instructor).filter_by(username=session.get("userName")).first().student
+    for student in  myStudents: 
+        grades = student.grades
+        if(grades.a1remark == 1 or grades.a2remark == 1 or grades.a3remark == 1 or 
+        grades.labsRemark == 1 or grades.midtermRemark == 1 or grades.finalRemark == 1 ):
+            remarkStudents.append(student)
+    return render_template("remarkRequests.html", remarkStudents =remarkStudents, accType=session.get("accountType"))
 
 @app.route('/editStudentGrade', )
 def editStudentGrade():
@@ -214,7 +224,7 @@ def modifyGrade():
     elif 'final' in request.form: 
         student.grades.final = int(request.form['newMark'])
         student.grades.finalRemark =0
-        student.grades.midtermRemarkMessage = None
+        student.grades.finalRemarkMessage = None
     s.commit()
     return render_template("editStudentGrade.html", student =student, accType=session.get("accountType"))
 
@@ -227,11 +237,27 @@ def giveFeedback():
     instructors = s.query(Student).filter_by(username=session.get("userName")).first().instructor
     return render_template("giveFeedback.html", accType=session.get("accountType"), instructors=instructors)
 
-@app.route('/giveFeedbackProcess')
+@app.route('/giveFeedbackProcess',  methods=['POST'])
 def giveFeedbackProcess():
     if session.get("logged_in") == False:
         return logout()
+    q1 = str(request.form['q1'])
+    q2 = str(request.form['q2'])
+    q3 = str(request.form['q3'])
+    q4 = str(request.form['q4'])
+    instructorUsername = request.form.get('listInstructors')
+    instructor = s.query(Instructor).filter_by(username=instructorUsername).first()
+    feedback = Feedback(instructorId=instructor.id, q1=q1, q2=q2, q3=q3, q4=q4)
+    s.add(feedback)
+    s.commit()
     return redirect(url_for('giveFeedback'))
+    
+@app.route('/viewFeedback')
+def viewFeedback():
+    if session.get("logged_in") == False:
+        return logout()
+    feedback = s.query(Instructor).filter_by(username=session.get("userName")).first().feedbacks
+    return render_template("viewFeedback.html", accType=session.get("accountType"), feedback=feedback)
 
 
 @app.route('/home')
