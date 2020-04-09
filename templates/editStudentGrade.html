@@ -42,7 +42,7 @@
                     <ul>
                         <li>Remark requested</li>
                         <li>Message: {{student.grades.a1remarkMessage}}</li>
-                      </ul>
+                    </ul>
                     {% endif %}
                 </td>
 
@@ -71,7 +71,10 @@
                     {% elif student.grades.a2 == None %}
                     - 
                     {% elif student.grades.a2remark == True %}
-                    Remark requested
+                    <ul>
+                        <li>Remark requested</li>
+                        <li>Message: {{student.grades.a2remarkMessage}}</li>
+                    </ul>
                     {% endif %}
                 </td>
 
@@ -99,7 +102,10 @@
                     {% elif student.grades.a3 == None %}
                     - 
                     {% elif student.grades.a3remark == True %}
-                    Remark requested
+                    <ul>
+                        <li>Remark requested</li>
+                        <li>Message: {{student.grades.a3remarkMessage}}</li>
+                    </ul>
                     {% endif %}
                     </td>
                     <td>  
@@ -126,7 +132,10 @@
                     {% elif student.grades.labs == None %}
                     - 
                     {% elif student.grades.labsRemark == True %}
-                    Remark requested
+                    <ul>
+                        <li>Remark requested</li>
+                        <li>Message: {{student.grades.labsRemarkMessage}}</li>
+                    </ul>
                     {% endif %}
                 </td>
 
@@ -153,7 +162,10 @@
                     {% elif student.grades.midterm == None %}
                     - 
                     {% elif student.grades.midtermRemark == True %}
-                    Remark requested
+                    <ul>
+                        <li>Remark requested</li>
+                        <li>Message: {{student.grades.midtermRemarkMessage}}</li>
+                    </ul>
                     {% endif %}
                 </td>
                 <td>  
@@ -178,9 +190,10 @@
                     {% elif student.grades.final == None %}
                     - 
                     {% elif student.grades.finalRemark == True %}
-                    Remark requested 
-                    <br>
-                    {{student.grades.finalRemarkMessage}}
+                    <ul>
+                        <li>Remark requested</li>
+                        <li>Message: {{student.grades.finalRemarkMessage}}</li>
+                    </ul>
                     {% endif %}
                 </td>
                 <td>  

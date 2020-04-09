@@ -176,7 +176,8 @@ def showMyStudents():
 
 @app.route('/redirect-editStudentGrade',  methods=['POST'])
 def redirecteditStudentGrade():
-    studentUsername = request.form.keys()[0]
+    for key in request.form.keys():
+        studentUsername = key
     session['studentBeingViewed'] = studentUsername
     return redirect(url_for('editStudentGrade'))
 
@@ -264,7 +265,13 @@ def viewFeedback():
 def home():
     if session.get("logged_in") == False:
         return logout()
-    return render_template("index.html", accType=session.get("accountType"))
+    # send who is logged in
+    user = s.query(User).filter_by(username=session.get("userName")).first()
+    if user.isInstructor == True:
+        user = user.instructor
+    else:
+        user = user.student
+    return render_template("index.html", accType=session.get("accountType"), user=user)
 
 
 @app.route('/news')

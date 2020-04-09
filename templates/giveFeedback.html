@@ -8,10 +8,10 @@
 <hr>
 <div class="content">
 
-    <form id="feedbackForm" name="feedbackForm" action="/signUp" onsubmit="return validateFeedback()" method="POST">
+    <form id="feedbackForm" name="feedbackForm" action="/giveFeedbackProcess" onsubmit="return validateFeedback()" method="POST">
 
         <!-- get all the users-->
-        <label>Choose your the instructor:</label>
+        <label>Choose one from your instructors:</label>
         <br>
         <select id="listInstructors" name="listInstructors">
             {% for i in instructors %}

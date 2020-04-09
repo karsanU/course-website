@@ -11,6 +11,16 @@
         {% endfor %}
     {% endif %}
     {% endwith %}
+    <h4>Hello {{user.firstName}} {{user.lastName}}!</h4>
+    <h4>You username is: {{user.username}}</h4>
+    <h4>
+        {% if user.user.isInstructor == True%}
+        Your account type is: Instructor
+        {% else%}
+        Your account type is: Student
+
+        {% endif %}
+    </h4>
 </div>
 <hr>
 <div class="content">
