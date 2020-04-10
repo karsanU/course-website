@@ -1,3 +1,4 @@
+// function only allows the form to be submitted if the mark is between 0-100.
 function validateRemark() {
 
     var newMark = document.forms["regradeForm"]["newMark"].value;
@@ -9,6 +10,7 @@ function validateRemark() {
 
 }
 
+// function that creates the collapsable view for the instructor's view feedback page. 
 document.addEventListener('DOMContentLoaded', function () {
     var collapsible = document.getElementsByClassName("collapsible");
     var i;
@@ -24,3 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 }, false);
+
+// makes sure the user is not submitting empty feedback messages. 
+function validateRemark() {
+
+    var q1 = document.forms["feedbackForm"]["q1"].value;
+    var q2 = document.forms["feedbackForm"]["q2"].value;
+    var q3 = document.forms["feedbackForm"]["q3"].value;
+    var q4 = document.forms["feedbackForm"]["q4"].value;
+
+    if (q1 != "" && q2 != "" && q3 != "" && q4 != "" ) {
+        return true;
+    }
+    alert("Please answer all the feedback questions.")
+    return false;
+
+}
