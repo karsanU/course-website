@@ -1,13 +1,66 @@
 function validateRemark() {
     var newMark = document.forms["regradeForm"]["newMark"].value;
-    if ((newMark < 101) && (newMark >= 0) && newMark != "") {
+
+
+    if ((newMark < 101) && (newMark >= 0)) {
         return true;
-    } 
+    }
     alert("Mark must be between 0 and 100")
     return false;
 
 }
+function validateRemark2() {
+    var newMark = document.forms["regradeForm2"]["newMark"].value;
 
+
+    if ((newMark < 101) && (newMark >= 0)) {
+        return true;
+    }
+    alert("Mark must be between 0 and 100")
+    return false;
+
+} function validateRemark3() {
+    var newMark = document.forms["regradeForm3"]["newMark"].value;
+
+
+    if ((newMark < 101) && (newMark >= 0)) {
+        return true;
+    }
+    alert("Mark must be between 0 and 100")
+    return false;
+
+} function validateRemark4() {
+    var newMark = document.forms["regradeForm4"]["newMark"].value;
+
+
+    if ((newMark < 101) && (newMark >= 0)) {
+        return true;
+    }
+    alert("Mark must be between 0 and 100")
+    return false;
+
+} function validateRemark5() {
+    var newMark = document.forms["regradeForm5"]["newMark"].value;
+
+
+    if ((newMark < 101) && (newMark >= 0)) {
+        return true;
+    }
+    alert("Mark must be between 0 and 100")
+    return false;
+
+}
+function validateRemark6() {
+    var newMark = document.forms["regradeForm6"]["newMark"].value;
+
+
+    if ((newMark < 101) && (newMark >= 0)) {
+        return true;
+    }
+    alert("Mark must be between 0 and 100")
+    return false;
+
+}
 // function that creates the collapsable view for the instructor's view feedback page. 
 document.addEventListener('DOMContentLoaded', function () {
     var collapsible = document.getElementsByClassName("collapsible");
@@ -33,7 +86,7 @@ function validateFeedback() {
     var q3 = document.forms["feedbackForm"]["q3"].value;
     var q4 = document.forms["feedbackForm"]["q4"].value;
 
-    if (q1 != "" && q2 != "" && q3 != "" && q4 != "" ) {
+    if (q1 != "" && q2 != "" && q3 != "" && q4 != "") {
         return true;
     }
     alert("Please answer all the feedback questions.")

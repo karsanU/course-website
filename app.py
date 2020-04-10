@@ -227,7 +227,7 @@ def signUp():
         s.commit()
 
         # add student's instructors
-        for sUsername in selectInstructors:
+        for sUsername in selectStudents:
             studentObj = s.query(Student).filter_by(username=sUsername).first()
             newInstructor.student.append(studentObj)
             s.commit()
@@ -238,7 +238,7 @@ def signUp():
 
 @app.route('/viewGrades')
 def viewGrades():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     return render_template("gradesStudent.html", user=s.query(User).filter_by(username=session.get("userName")).first(), accType=session.get("accountType"))
 
@@ -331,7 +331,7 @@ def modifyGrade():
 
 @app.route('/giveFeedback')
 def giveFeedback():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
         
     instructors = s.query(Student).filter_by(username=session.get("userName")).first().instructor
@@ -339,7 +339,7 @@ def giveFeedback():
 
 @app.route('/giveFeedbackProcess',  methods=['POST'])
 def giveFeedbackProcess():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     q1 = str(request.form['q1'])
     q2 = str(request.form['q2'])
@@ -354,7 +354,7 @@ def giveFeedbackProcess():
     
 @app.route('/viewFeedback')
 def viewFeedback():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     feedback = s.query(Instructor).filter_by(username=session.get("userName")).first().feedbacks
     return render_template("viewFeedback.html", accType=session.get("accountType"), feedback=feedback)
@@ -362,7 +362,7 @@ def viewFeedback():
 
 @app.route('/home')
 def home():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     # send who is logged in
     user = s.query(User).filter_by(username=session.get("userName")).first()
@@ -375,35 +375,35 @@ def home():
 
 @app.route('/news')
 def news():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     return render_template("news.html", accType=session.get("accountType"))
 
 
 @app.route('/lectures')
 def lectures():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     return render_template("lectures.html", accType=session.get("accountType"))
 
 
 @app.route('/labs')
 def labs():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     return render_template("labs.html", accType=session.get("accountType"))
 
 
 @app.route('/contacts')
 def contact():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == None :
         return logout()
     return render_template("contacts.html", accType=session.get("accountType"))
 
 
 @app.route('/assignments')
 def assignments():
-    if session.get("logged_in") == False:
+    if session.get("logged_in") == False or session.get("logged_in") == Non :
         return logout()
     return render_template("assignments.html", accType=session.get("accountType"))
 
