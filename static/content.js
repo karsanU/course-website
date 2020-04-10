@@ -1,10 +1,8 @@
-// function only allows the form to be submitted if the mark is between 0-100.
 function validateRemark() {
-
     var newMark = document.forms["regradeForm"]["newMark"].value;
-    if ((newMark < 101) && (newMark >= 0)) {
+    if ((newMark < 101) && (newMark >= 0) && newMark != "") {
         return true;
-    }
+    } 
     alert("Mark must be between 0 and 100")
     return false;
 
@@ -28,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 // makes sure the user is not submitting empty feedback messages. 
-function validateRemark() {
+function validateFeedback() {
 
     var q1 = document.forms["feedbackForm"]["q1"].value;
     var q2 = document.forms["feedbackForm"]["q2"].value;

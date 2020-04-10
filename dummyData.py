@@ -1,4 +1,3 @@
-import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from databaseSchema import *
@@ -30,7 +29,7 @@ session.commit()
 bobTeach = Instructor(userId=instructor1.id, username=instructor1.username,  firstName='Bob', lastName='Lucio')
 session.add(bobTeach)
 
-stevenTeach = Instructor(userId=instructor2.id, username=instructor2.username, firstName='Steven', lastName='Xaio')
+stevenTeach = Instructor(userId=instructor2.id, username=instructor2.username, firstName='Steven', lastName='Xiao')
 session.add(stevenTeach)
 session.commit()
 
@@ -46,7 +45,7 @@ session.add(hamishStudent)
 session.commit()
 
 # add grades
-karsanGrade = Grades(studentId = karsanStudent.id, a1=99, a2 = 100, a3=99, midterm=99, final=100, labs = 99)
+karsanGrade = Grades(studentId = karsanStudent.id, a1=99, a2 = 100, a3=99, midterm=99, final=100, labs = 99, a1remark=1, a1remarkMessage ="test for a1 remark message" )
 session.add(karsanGrade)   
 
 hamsihGrade = Grades(studentId = hamishStudent.id, a1=99, a2 = 100, a3=99, midterm=99, final=100, labs =99)
@@ -54,10 +53,10 @@ session.add(hamsihGrade)
 session.commit()
 
 # add feedback 
-feedback1 = Feedback(instructorId=bobTeach.id,  q1="Please bring donuts for all students.", q2="",q3="", q4="")
+feedback1 = Feedback(instructorId=bobTeach.id,  q1="Please bring donuts for all students.", q2="test for q2",q3="test for q3", q4="test for q4")
 session.add(feedback1)
 
-feedback2 = Feedback(instructorId=stevenTeach.id,  q1="Please bring cookies for all students.", q2="",q3="", q4="")
+feedback2 = Feedback(instructorId=stevenTeach.id,  q1="Please bring cookies for all students.", q2="test for q2",q3="test for q3", q4="test for q4")
 session.add(feedback2)
 session.commit()
 
